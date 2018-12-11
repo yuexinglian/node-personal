@@ -1,7 +1,7 @@
 var development = require('./development');
 var production = require('./production');
 
-module.exports = () => {
+function config() {
     switch (process.env.NODE_ENV) {
     case 'development':
         return development;
@@ -10,4 +10,6 @@ module.exports = () => {
     default:
         return development;
     }
-};
+}
+
+module.exports = config();

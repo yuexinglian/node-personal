@@ -1,20 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-        <router-link to="/">Home</router-link>
-        <router-link to="/home">about Home</router-link>
+    <Head></Head>
+    <Aside></Aside>
+    <div>
+      <p>
+        If Element is successfully added to this project, you'll see an
+        <code v-text="'<el-button>'"></code>
+        below
+      </p>
+      <el-button>el-button</el-button>
     </div>
-    <router-view></router-view>
   </div>
 </template>
-
-<style lang="less">
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+<script>
+import Head from '@/components/Head.vue'
+import Aside from '@/components/Aside.vue'
+export default {
+  name: 'home',
+  components: {
+    Head,
+    Aside
   }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 </style>
