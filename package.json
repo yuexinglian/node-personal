@@ -6,15 +6,20 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "set NODE_ENV=development && node bin/server",
+    "dev": "set NODE_ENV=development && supervisor ./bin/server",
     "eslint": "./node_modules/.bin/eslint",
     "start": "set NODE_ENV=production && node bin/server"
   },
   "dependencies": {
+    "aes-js": "^3.1.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "connect-mongodb-session": "^2.0.6",
     "element-ui": "^2.4.5",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "http-errors": "^1.7.1",
+    "log4js": "^3.0.6",
     "mongodb": "^3.1.10",
     "vue": "^2.5.17",
     "vue-router": "^3.0.2"

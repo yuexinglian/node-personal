@@ -11,7 +11,10 @@
         </el-form-item>
         <p class="go-to-signin">
           {{status ? '没有账号？去': '已有账号？去'}}
-          <a href="javascript:void(0)" @click="changeStatus">{{status? '注册': '登录'}}</a>
+          <a
+            href="javascript:void(0)"
+            @click="changeStatus"
+          >{{status? '注册': '登录'}}</a>
         </p>
         <el-button type="primary" @click="loginOrSignin">{{status ? '登录': '注册'}}</el-button>
       </el-form>
@@ -20,6 +23,9 @@
 </template>
 <script>
 import axios from "axios";
+const aesjs = require('aes-js');
+
+
 export default {
   name: "Login",
   data: () => {
@@ -35,33 +41,32 @@ export default {
     changeStatus: function() {
       this.status == true ? (this.status = false) : (this.status = true);
     },
-    loginOrSignin: () => {
-      axios
-        .get("/api/testApi")
-        .then(function(res) {
-          console.log(res);
+    loginOrSignin: function() {
+        let vm = this;
+        let data = Object.assign(vm.form,{status: this.status});
+        axios.post('/api/login',data)
+        .then(function(response) {
+            console.log(response);
+        }).catch(function(error) {
+            console.log(error);
         })
-        .catch(function(error) {
-          console.log(error);
-        });
+        // console.log(this.form.password);
+        // let vm = this;
+        // var key = [ 1, 2, 3, 4, 5, 6, 7, 31, 9, 10, 11, 12, 13, 14, 15, 16 ];
+        // var iv = [ 21, 22, 23, 24, 96, 26, 27, 28, 29, 30, 31, 32, 33, 34,35, 36 ];
+        // var add = aesjs.utils.utf8.toBytes(vm.form.password);
+        // var aseCbc = new aesjs.ModeOfOperation.ofb(key,iv);
+        // var encrypedBytes = aseCbc.encrypt(add);
+        // var encryptedHex = aesjs.utils.hex.fromBytes(encrypedBytes);
+        // console.log(encryptedHex);
     }
-    //   function() {
-    //       let vm = this;
-    //       let data = Object.assign(vm.form,{'status': this.status});
-    //       axios.post('/api/login', data
-    //       ).then(function(response) {
-    //           console.log(response);
-    //       }).catch(function(error) {
-    //           console.log(error);
-    //       })
-    //   }
   }
 };
 </script>
 <style lang="less" scoped>
 .login-container {
   width: 500px;
-  height: 500px;
+  padding-bottom: 30px;
   position: fixed;
   left: 500px;
   top: 200px;

@@ -1,0 +1,56 @@
+{
+    "appenders": {
+        "console": {
+            "type": "console"
+        },
+        "stdout": {
+            "type": "stdout"
+        },
+        "production": {
+            "type": "dateFile",
+            "filename": "./logs/",
+            "alwaysIncludePattern": true,
+            "pattern": "SNSWeb-yyyy-MM-dd.log"
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": [
+                "console"
+            ],
+            "replaceConsole": true,
+            "level": "ALL",
+            "pm2": true,
+            "pm2InstanceVar": "INSTANCE_ID"
+        },
+        "production": {
+            "appenders": [
+                "production",
+                "stdout"
+            ],
+            "replaceConsole": true,
+            "level": "INFO",
+            "pm2": true,
+            "pm2InstanceVar": "INSTANCE_ID"
+        },
+        "test": {
+            "appenders": [
+                "production",
+                "stdout"
+            ],
+            "replaceConsole": true,
+            "level": "INFO",
+            "pm2": true,
+            "pm2InstanceVar": "INSTANCE_ID"
+        },
+        "development": {
+            "appenders": [
+                "console"
+            ],
+            "replaceConsole": true,
+            "level": "ALL",
+            "pm2": true,
+            "pm2InstanceVar": "INSTANCE_ID"
+        }
+    }
+}
